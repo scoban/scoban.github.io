@@ -1,0 +1,65 @@
+---
+layout: post
+title:  "Generating Java Classes from WSDL file"
+date:   2023-11-06 23:00:00 +0000
+categories: wsdl2java apachecxf gradle kotlin
+---
+
+The motivation why i wrote a script to generate java from wsdl file is that one of our plugin was not supported after upgrading spring boot version from 1.5 to 2.7. Instead of replacing with another gradle plugin, i decided to write it by myself. Therefore, our applications will be more under control and flexible.
+
+Feel free to adapt to your requirements. You can also write the following plugin using gradle custom task.
+
+<a>https://docs.gradle.org/current/userguide/custom_tasks.html</a>
+
+The configuration should be defined in build.gradle.kt file. This is tested in gradle 8.1.1 and Java 11.
+
+{% highlight gradle %}
+val wsdl2java by configurations.creating
+configurations {
+    wsdl2java
+}
+
+tasks.register("generateJavaFromWsdl") {
+    ext["destDir"] = "${buildDir}/generated/wsdl"
+    ext["destDir"]?.let { mkdir(it) }
+    println("Adding sourceset ${buildDir}/generated/wsdl")
+    sourceSets {
+        main {
+            java {
+                srcDirs("${buildDir}/generated/wsdl")
+            }
+        }
+    }
+    doLast {
+        println("Generating java from wsdl file")
+        ant.withGroovyBuilder {
+            "java"(
+                "fork" to true,
+                "classname" to "org.apache.cxf.tools.wsdlto.WSDLToJava",
+                "dir" to "${projectDir}"
+            ) {
+                "arg"("value" to "-client")
+                "arg"("value" to "-d")
+                "arg"("value" to "${buildDir}/generated/wsdl")
+                "arg"("value" to "-encoding")
+                "arg"("value" to "UTF-8")
+                "arg"("value" to "-wsdlLocation")
+                "arg"("value" to "classpath:wsdl/REPLACE_WSDL_NAME.wsdl")
+                "arg"("value" to "${projectDir}/src/main/resources/wsdl/REPLACE_WSDL_NAME.wsdl")
+
+                "classpath" {
+                    "pathelement"(
+                        "path" to wsdl2java.asPath
+                    )
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    wsdl2java("org.apache.cxf:cxf-tools-wsdlto-core:3.5.5")
+    wsdl2java("org.apache.cxf:cxf-tools-wsdlto-frontend-jaxws:3.5.5")
+    wsdl2java("org.apache.cxf:cxf-tools-wsdlto-databinding-jaxb:3.5.5")
+}
+{% endhighlight %}

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "My First Blog!"
+title:  "My First Blog"
 date:   2023-11-06 21:11:56 +0000
 categories: scoban blog
 ---

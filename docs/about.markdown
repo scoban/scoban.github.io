@@ -28,6 +28,6 @@ Technical stacks
     <li>Java, Kotlin, Spring Boot, SOAP, MVC, WSDL, Junit, JVM, Microservices, IntelliJ, Scrum, Sprint, Agile, Excelidraw, Kubernete, Docker, Messaging Queue, Liqubase</li>
     <li>Azure Cloud Stack: Azure Storage, VPN, Gateway, Redis, KeyVaults, CosmoDB, Mysql, Load Testing, Container Repository, Azure BUS, Virtual Machine</li>
     <li>CI/CD Tools: Gradle, Helm, Git, Github Workflow, Github Actions, Bash, Bicep, ArgoCD </li>
-    <li>AWS Cloud Stack: Route 53, AWS CloudFormation, AWS IAM Role Anywhere, AWS S3 Buckets</a></li>
+    <li>AWS Cloud Stack: Route 53, AWS CloudFormation, AWS IAM Role Anywhere, AWS S3 Buckets</li>
     <li>Troubleshooting tools: Eclipse MAT ( Eclipse Memory Analyzer), Jmap, Jstack, Newrelic</li>
 </ul>
