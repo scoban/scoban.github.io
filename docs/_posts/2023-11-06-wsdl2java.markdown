@@ -5,9 +5,11 @@ date:   2023-11-06 23:00:00 +0000
 categories: wsdl2java apachecxf gradle kotlin
 ---
 
-The motivation why i wrote a script to generate java from wsdl file is that one of our plugin was not supported after upgrading spring boot version from 1.5 to 2.7. Instead of replacing with another gradle plugin, i decided to write it by myself. Therefore, our applications will be more under control and flexible.
+One of the key disadvantages of relying heavily on tightly coupled third-party tools is the risk of compatibility issues during upgrades. When a critical plugin is no longer maintained or fails to support newer versions of core frameworks, it can cause significant delays and technical debt. By building and maintaining our own solution, we reduce this dependency and ensure long-term stability in our build process.
 
-Feel free to adapt to your requirements. You can also write the following plugin using gradle custom task.
+Rather than replacing it with another Gradle plugin, I decided to implement the functionality myself. This approach gives us better control and flexibility over our applications.
+
+Feel free to adapt this to your needs—you could also implement the same functionality using a custom Gradle task if preferred.
 
 <a href="https://docs.gradle.org/current/userguide/custom_tasks.html">Custom Gradle Task</a>
 
