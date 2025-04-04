@@ -9,7 +9,7 @@ The motivation why i wrote a script to generate java from wsdl file is that one 
 
 Feel free to adapt to your requirements. You can also write the following plugin using gradle custom task.
 
-<a href="https://docs.gradle.org/current/userguide/custom_tasks.html">Custom Grandle Task</a>
+<a href="https://docs.gradle.org/current/userguide/custom_tasks.html">Custom Gradle Task</a>
 
 The configuration should be defined in build.gradle.kt file. This is tested in gradle 8.1.1 and Java 11.
 
