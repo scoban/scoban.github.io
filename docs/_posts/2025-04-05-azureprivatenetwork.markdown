@@ -31,20 +31,20 @@ az network bastion tunnel --name $BASTION --resource-group $BASTION_RG \
 
 {% endhighlight %}
 
-It is worth to explain what the script is doing. This <b>az network bastion tunnel</b> command is used to create a tunnel through Azure Bastion to securely connect to a Virtual Machine (VM)—usually via SSH on port 22. 
+It is worth to explain what the script is doing. This **az network bastion tunnel** command is used to create a tunnel through Azure Bastion to securely connect to a Virtual Machine (VM)—usually via SSH on port 22. 
 
 We first set up a tunnel to connect to virtual machine. You can think of a bastion as a path to virtual machine. Once you set up a tunnel,
 you are a part of the same virtual network as virtual machine.
 
-| Syntax                              | Description                                                                                                                                                        |
-|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <i>az network bastion tunnel</i>    | This Azure CLI command sets up a Bastion tunnel, allowing local access to the VM via Bastion without needing a public IP on the VM.                                |
-| <i>--name $BASTION</i>              | The name of the Azure Bastion resource you're using                                                                                                                |
-| <i>--resource-group $BASTION_RG</i> | The resource group where the Bastion resource resides.                                                                                                             |
-| <i>--target-resource-id</i>         | This is the full Azure Resource ID of the <b>VM you want to connect to</b>. You provide the subscription ID, resource group, and VM name to specify the target VM. |
-| <i>---resource-port "22"</i>        | The port on the VM you want to connect to. Port 22 is standard for SSH.                                                                                            |
-| <i>--port $REMOTE_PORT</i>          | This is the <b>local port on your machine</b> where the tunnel will be established. You'll connect to localhost:$REMOTE_PORT to access the VM.                     |
-| <i>--subscription $HUB_SUB</i>      | Specifies which Azure subscription contains the Bastion resource (could be different from the VM’s subscription).                                                  |
+| Syntax                              | Description                                                                                                                                                       |
+|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <i>az network bastion tunnel</i>    | This Azure CLI command sets up a Bastion tunnel, allowing local access to the VM via Bastion without needing a public IP on the VM.                               |
+| <i>--name $BASTION</i>              | The name of the Azure Bastion resource you're using                                                                                                               |
+| <i>--resource-group $BASTION_RG</i> | The resource group where the Bastion resource resides.                                                                                                            |
+| <i>--target-resource-id</i>         | This is the full Azure Resource ID of the **VM you want to connect to**. You provide the subscription ID, resource group, and VM name to specify the target VM.   |
+| <i>---resource-port "22"</i>        | The port on the VM you want to connect to. Port 22 is standard for SSH.                                                                                           |
+| <i>--port $REMOTE_PORT</i>          | This is the **local port on your machine** where the tunnel will be established. You'll connect to localhost:$REMOTE_PORT to access the VM.                       |
+| <i>--subscription $HUB_SUB</i>      | Specifies which Azure subscription contains the Bastion resource (could be different from the VM’s subscription).                                                 |
 
 The next command that forwards requests that is being sent by your local port to mysql server. Since you are in a same virtual network, connect to mysql is a similar like it is being installed locally.
 
